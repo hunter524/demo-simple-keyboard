@@ -94,10 +94,6 @@ class App extends Component {
 
 
   setActiveInput = (inputName,evt )=> {
-    // 监听返回按键
-    if (PAGE_COUNT<=0){
-      window.history.forward()
-    }
     this.setState(
         {
           inputName: inputName,
@@ -117,9 +113,6 @@ class App extends Component {
   };
 
   closeKeyboard = () => {
-    if (PAGE_COUNT >= 1){
-      window.history.back()
-    }
     if (this.state.currentInput){
       this.state.currentInput.blur()
     }
@@ -154,10 +147,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    window.history.pushState(null,null,document.URL)
-    PAGE_COUNT++
     window.addEventListener("popstate",()=>{
-      PAGE_COUNT--
       this.closeKeyboard()
     })
   }
