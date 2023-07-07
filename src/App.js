@@ -220,7 +220,7 @@ class App extends Component {
                 layout={DEFAULT_INPUT_LAYOUT}
                 display={DEFAULT_DISPLAY}
                 preventMouseDownDefault={true}
-                autoUseTouchEvents={true}
+                useTouchEvents={true}
                 inputPattern={/(^\d+$)|(^\d+\.$)|(^\d+\.\d{0,2}$)/}
                 onChangeAll={inputObj => this.onChangeAll(inputObj)}
                 onKeyPress={button => this.onKeyPress(button)}

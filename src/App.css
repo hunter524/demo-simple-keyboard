@@ -84,7 +84,6 @@ input {
 
 [data-skuid="default-r0c0"]{
   width: 70vw;
-  height: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
