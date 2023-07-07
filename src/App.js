@@ -37,6 +37,8 @@ const STOP_CUT_PASTE = (event) => {
 
 let PAGE_COUNT = 0;
 
+let IS_IOS = /iPhone/ig.test(navigator.userAgent)
+
 class App extends Component {
   state = {
     inputName: "input1", /*多个 input 标记当前激活的 input 标签,传递给 keyboard 组件*/
@@ -102,13 +104,26 @@ class App extends Component {
         },
         () => {
           console.log("Active input", inputName);
-          if (evt.target.scrollIntoViewIfNeeded){
-            evt.target.scrollIntoViewIfNeeded()
+          var input = evt.target;
+          if (input.scrollIntoViewIfNeeded){
+            input.scrollIntoViewIfNeeded()
           }
           else {
-            evt.target.scrollIntoView()
+            input.scrollIntoView()
+          }
+          // 解决 ios 组件滚动后不聚焦的问题cfp
+          if (IS_IOS){
+            setTimeout(()=>{
+              var oldValue = input.value;
+              input.value = (oldValue||"")+" "
+              setTimeout(()=>{
+                input.value = oldValue
+              },50)
+            })
           }
         }
+
+
     );
   };
 
